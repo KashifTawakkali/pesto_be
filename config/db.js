@@ -1,15 +1,20 @@
 const mongoose = require("mongoose");
 
 module.exports = () => {
-  mongoose.connect(process.env.URL, {
-    dbName: process.env.DBNAME,
-    user: process.env.USERNAME,
-    pass: process.env.PASSWORD,
-  })
-  .then(() => {
+  const dbUrl = process.env.URL;
+  const dbName = process.env.DBNAME;
+  const dbUser = process.env.USERNAME;
+  const dbPass = process.env.PASSWORD;
+
+  console.log(`Connecting to MongoDB at ${dbUrl} with DB name ${dbName}`);
+
+  mongoose.connect(dbUrl, {
+    dbName: dbName,
+    user: dbUser,
+    pass: dbPass,
+  }).then(() => {
     console.log("DB Connection established successfully");
-  })
-  .catch((error) => {
-    console.log(error);
+  }).catch((error) => {
+    console.log("DB Connection error: ", error);
   });
 };
