@@ -19,6 +19,12 @@ const app = express();
 
 // Middleware
 app.use(cors());
+app.use(express.json()); // If you need to parse JSON bodies
+
+// Root Route
+app.get('/', (req, res) => {
+  res.send('Welcome to the API');
+});
 
 // Routes
 app.use('/api/v1/auth', authRoutes);
