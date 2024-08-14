@@ -19,11 +19,16 @@ const app = express();
 
 // Middleware
 app.use(cors());
-app.use(express.json()); 
+app.use(express.json()); // To parse JSON bodies
 
 // Root Route
 app.get('/', (req, res) => {
-  res.send('Welcome to the API of AMS');
+  res.send('Welcome to the API');
+});
+
+// Test Route (for troubleshooting)
+app.get('/api/v1/auth/test', (req, res) => {
+  res.send('Test route works!');
 });
 
 // Routes
