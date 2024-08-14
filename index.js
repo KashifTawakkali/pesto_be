@@ -19,11 +19,11 @@ const app = express();
 
 // Middleware
 app.use(cors());
-app.use(express.json()); // If you need to parse JSON bodies
+app.use(express.json()); 
 
 // Root Route
 app.get('/', (req, res) => {
-  res.send('Welcome to the API');
+  res.send('Welcome to the API of AMS');
 });
 
 // Routes
