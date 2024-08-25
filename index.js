@@ -35,7 +35,7 @@ app.get('/api/v1/auth/test', (req, res) => {
 
 // Routes
 app.use('/api/v1/auth', authRoutes);
-app.use('/api/v1/tasks', taskRoutes);
+app.use('/api/v1/create_tasks', taskRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 3000;
