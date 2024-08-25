@@ -1,18 +1,15 @@
+// routes/taskRoutes.js
 const express = require('express');
 const { createTask } = require('../controllers/taskController');
 const { updateTaskStatus } = require('../controllers/updateTaskController');
 const { getAllTasks } = require('../controllers/getTaskController');
-const auth = require('../middleware/authMiddleware');
+const { deleteTaskById } = require('../controllers/deleteTaskController');  
 
 const router = express.Router();
 
-// Route to create a new task
-router.post('/create', auth, createTask);
-
-// Route to update task status
-router.post('/update-status', auth, updateTaskStatus);
-
-// Route to get all tasks
-router.get('/all', auth, getAllTasks);
+router.post('/create', createTask);
+router.post('/update', updateTaskStatus);
+router.get('/all', getAllTasks);
+router.delete('/delete', deleteTaskById);  
 
 module.exports = router;
