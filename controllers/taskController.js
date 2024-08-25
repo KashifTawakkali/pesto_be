@@ -1,5 +1,6 @@
 const Task = require('../models/taskModel');
 
+// Create Task Controller
 exports.createTask = async (req, res) => {
   const { taskName, taskDescription, assignee, accountable, deadline } = req.body;
 
@@ -24,8 +25,8 @@ exports.createTask = async (req, res) => {
 
     await task.save();
 
-    res.status(201).json({ message: 'Task created successfully' });
+    res.status(201).json({ message: 'Task created successfully', task });
   } catch (error) {
-    res.status(500).json({ message: 'Server error' });
+    res.status(500).json({ message: 'Server error', error });
   }
 };
