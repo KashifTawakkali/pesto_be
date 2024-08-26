@@ -30,7 +30,7 @@ const TaskSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    default: 'pending',
+    default: 'New',
   },
   deadline: {
     type: Date,

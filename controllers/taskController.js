@@ -22,7 +22,7 @@ exports.createTask = async (req, res) => {
       taskDescription,
       assignee,
       accountable,
-      status: 'pending', // Default status
+      status: 'New', 
       deadline: deadlineDate,
     });
 
