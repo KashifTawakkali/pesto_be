@@ -1,30 +1,32 @@
+// controllers/updateTaskController.js
 const Task = require('../models/taskModel');
 
-// Update Task Status Controller
-exports.updateTaskStatus = async (req, res) => {
-  const { taskId, status } = req.body;
+exports.updateTaskStatusByNumber = async (req, res) => {
+  const { taskNumber, status } = req.body;
 
-  const validStatuses = ['pending', 'in-progress', 'on-hold', 'completed', 'reopened'];
-
-  if (!taskId || !status) {
-    return res.status(400).json({ message: 'Task ID and status are required' });
+  if (!taskNumber || !status) {
+    return res.status(400).json({ message: 'Task number and status are required' });
   }
 
+  const validStatuses = ['New', 'In Progress', 'On Hold', 'Complete', 'Reopened'];
   if (!validStatuses.includes(status)) {
     return res.status(400).json({ message: 'Invalid status' });
   }
 
   try {
-    const task = await Task.findById(taskId);
+    const task = await Task.findOneAndUpdate(
+      { taskNumber },
+      { status },
+      { new: true }
+    );
+
     if (!task) {
       return res.status(404).json({ message: 'Task not found' });
     }
 
-    task.status = status;
-    await task.save();
-
     res.status(200).json({ message: 'Task status updated successfully', task });
   } catch (error) {
-    res.status(500).json({ message: 'Server error', error });
+    console.error('Error updating task status:', error);
+    res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
