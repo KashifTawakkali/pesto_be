@@ -1,10 +1,16 @@
 const mongoose = require('mongoose');
 
+// Generate a unique task number (you can customize this logic as needed)
+function generateTaskNumber() {
+  return `TSK${Date.now().toString().slice(-6)}`;
+}
+
 const TaskSchema = new mongoose.Schema({
   taskNumber: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
+    default: generateTaskNumber
   },
   taskName: {
     type: String,
